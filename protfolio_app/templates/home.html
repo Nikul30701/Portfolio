@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Animated Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="static/js/script.js" defer></script>
+</head>
+<body>
+    <canvas id="backgroundCanvas"></canvas>
+
+    <div class="container mx-auto p-8 max-w-7xl">
+
+        <!-- Navigation Bar -->
+        <nav class="nav-bar" data-animation-delay="100">
+            <div class="flex space-x-8">
+                <a href="#home" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">Home</a>
+                <a href="#about" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">About</a>
+                <a href="#projects" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">Projects</a>
+                <a href="#skills" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">Skills</a>
+                <a href="#resume" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">Resume</a>
+                <a href="#contact" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">Contact</a>
+            </div>
+        </nav>
+
+        <header id="home" class="flex flex-col items-center justify-center min-h-screen text-center py-40">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 gradient-text animate-fade-in" data-animation-delay="200">
+                Hi, I'm a Developer
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl animate-fade-in-up" data-animation-delay="400">
+                Passionate about crafting elegant and efficient solutions. Explore my work below!
+            </p>
+        </header>
+
+        <section id="about" class="py-20 animate-on-scroll animate-fade-in-up">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center md:space-x-8 bg-dark-800 p-8 rounded-xl shadow-lg border ">
+                <div class="text-lg text-gray-300 text-center md:text-left animate-on-scroll animate-fade-in-up" data-animation-delay="400">
+                    <p class="mb-4">Hello! I'm a dedicated and enthusiastic software developer with a strong foundation in building robust and scalable web applications. My journey into tech began with a curiosity for how things work, evolving into a passion for creating impactful digital experiences.</p>
+                    <p class="mb-4">I specialize in full-stack development, with a particular focus on Python (Django) for backend logic. I'm constantly learning new technologies and improving my craft.</p>
+                    <p>Outside of coding, I enjoy hiking, reading sci-fi novels, and exploring new culinary experiences. I believe in continuous growth, both personally and professionally.</p>
+                </div>
+            </div>
+        </section>
+
+<section id="projects" class="py-20">
+    <h2 class="text-4xl font-bold text-center mb-12 gradient-text animate-on-scroll animate-fade-in-up">My Projects</h2>
+    <div class="project-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for project in projects %}
+        <div class="flip-card animate-on-scroll animate-scale-in" data-animation-delay="{{ forloop.counter0 | add:2 }}00">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    {% if project.images %}
+                        <img src="{{ project.images.url }}" alt="{{ project.title }} Thumbnail" class="w-full h-48 object-cover rounded-md mb-4 border border-violet-400">
+                    {% else %}
+                        <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Project+{{ forloop.counter }}" alt="Placeholder Image for {{ project.title }}" class="w-full h-48 object-cover rounded-md mb-4 border border-violet-400">
+                    {% endif %}
+                    <h3 class="text-2xl font-semibold mb-2">{{ project.title }}</h3>
+<!--                    <p class="text-gray-300 text-sm mb-4 flex-grow">{{ project.description|truncatechars:150 }}</p>-->
+                    {% if project.framework %}
+                        <div class="text-sm text-gray-400 mb-4">Framework: <span class="text-primary-color">{{ project.framework }}</span></div>
+                    {% endif %}
+                    <div class="flex space-x-3 mt-auto">
+                        {% if project.project_url %}
+                            <a href="#" class="text-primary-color hover:text-accent-color transition-colors duration-200 flip-trigger">Learn More &rarr;</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="flip-card-back bg-gray-800 p-6 rounded-xl flex flex-col justify-center items-center text-center">
+                    <h3 class="text-2xl font-semibold mb-3">{{ project.title }}</h3>
+                    <p class="text-gray-300 mb-6 flex-grow">{{ project.description }}</p>
+                    <div class="flex flex-col space-y-4 w-full">
+                        {% if project.project_url %}
+                            <a href="{{ project.project_url }}" target="_blank" class="btn-primary flex items-center justify-center">
+                                <i class="fab fa-github mr-2"></i> View Code
+                            </a>
+                        {% endif %}
+                        {% if project.live_url %}
+                            <a href="{{ project.live_url }}" target="_blank" class="btn-secondary flex items-center justify-center">
+                                <i class="fas fa-external-link-alt mr-2"></i> Live Demo
+                            </a>
+                        {% endif %}
+                        <a href="#home" class="btn-secondary flip-trigger flex items-center justify-center">
+                            <i class="fas fa-arrow-left mr-2"></i> Go Back
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="col-span-full text-center text-gray-400">No projects to display yet. Add some from your Django admin!</p>
+        {% endfor %}
+    </div>
+</section>
+        <section id="skills" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text animate-on-scroll animate-fade-in-up">My Skills</h2>>
+            <div class="skills-grid grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                {% for skill in skills %}
+                    <div class="skill-item animate-on-scroll animate-scale-in" data-animation-delay="{{ forloop.counter0 | add:2 }}00">
+                        {% if skill.icon %}
+                            <img src="{{ skill.icon.url }}" alt="{{ skill.name }} Icon" class="w-16 h-16 object-contain mb-3">
+                        {% else %}
+                             <!-- Fallback placeholder if no icon is provided, using first two letters of skill name -->
+                             <img src="https://placehold.co/80x80/6366f1/ffffff?text={{ skill.name|slice:":2" }}" alt="{{ skill.name }} Icon" class="w-16 h-16 object-contain mb-3">
+                        {% endif %}
+                        <h3 class="text-lg font-semibold">{{ skill.name }}</h3>
+                    </div>
+                {% empty %}
+                <p class="col-span-full text-center text-gray-400">No skills to display yet. Add some from your Django admin!</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="resume" class="py-20 animate-on-scroll animate-fade-in-up">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Download My Resume</h2>
+            <div class="bg-dark-900 p-8 rounded-xl shadow-lg border border-gray-700 max-w-2xl mx-auto animate-on-scroll animate-fade-in-up" data-animation-delay="200">
+                <p class="text-lg text-gray-300 mb-6 text-center">
+                    Want to know more about my experience and qualifications? Download my resume below!
+                </p>
+                <div class="text-center">
+                    <a href="{% url 'protfolio_app:download_resume' %}" class="btn-download">
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 animate-on-scroll animate-fade-in-up">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Contact Me</h2>
+            <div class="bg-dark-900 p-8 rounded-xl shadow-lg border border-gray-700 max-w-2xl mx-auto animate-on-scroll animate-fade-in-up" data-animation-delay="200">
+                <p class="text-lg text-gray-300 mb-6 text-center">I'm always open to new opportunities, collaborations, and conversations. Feel free to reach out!</p>
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-300 text-sm font-bold mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent bg-gray-200" placeholder="Your Name">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-300 text-sm font-bold mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent bg-gray-200" placeholder="your.email@example.com">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-300 text-sm font-bold mb-2">Message</label>
+                        <textarea id="message" name="message" rows="6" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent bg-gray-200" placeholder="Your message..."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-10 border-t border-gray-700 mt-12 animate-fade-in" data-animation-delay="1000">
+            <p class="text-gray-400">&copy; 2025 Your Name. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="https://www.linkedin.com/in/nikul6403/" target="_blank" class="text-gray-400 hover:text-primary-color transition-colors duration-200">LinkedIn</a>
+                <a href="https://github.com/Nikul30701" target="_blank" class="text-gray-400 hover:text-primary-color transition-colors duration-200">GitHub</a>
+                <a href="#" target="_blank" class="text-gray-400 hover:text-primary-color transition-colors duration-200">Twitter</a>
+            </div>
+        </footer>
+
+        <button id="scrollToTopBtn" title="Go to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+    </div>
+</body>
+</html>
