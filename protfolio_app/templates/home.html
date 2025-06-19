@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Animated Portfolio</title>
+    <title>Nikul | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="static/css/style.css">
     <script src="static/js/script.js" defer></script>
@@ -18,18 +18,18 @@
         <!-- Navigation Bar -->
         <nav class="nav-bar" data-animation-delay="100">
             <div class="flex space-x-8">
-                <a href="#home" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">Home</a>
-                <a href="#about" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">About</a>
-                <a href="#projects" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">Projects</a>
-                <a href="#skills" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">Skills</a>
-                <a href="#resume" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">Resume</a>
-                <a href="#contact" class="text-gray-300 hover:text-primary-color transition-colors duration-200 text-lg font-medium">Contact</a>
+                <a href="#home" class="nav-links">Home</a>
+                <a href="#about" class="nav-links">About</a>
+                <a href="#projects" class="nav-links">Projects</a>
+                <a href="#skills" class="nav-links">Skills</a>
+                <a href="#resume" class="nav-links">Resume</a>
+                <a href="#contact" class="nav-links">Contact</a>
             </div>
         </nav>
 
         <header id="home" class="flex flex-col items-center justify-center min-h-screen text-center py-40">
             <h1 class="text-5xl md:text-7xl font-extrabold mb-4 gradient-text animate-fade-in" data-animation-delay="200">
-                Hi, I'm a Developer
+                Hi, I'm a Nikul
             </h1>
             <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl animate-fade-in-up" data-animation-delay="400">
                 Passionate about crafting elegant and efficient solutions. Explore my work below!
@@ -55,12 +55,11 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     {% if project.images %}
-                        <img src="{{ project.images.url }}" alt="{{ project.title }} Thumbnail" class="w-full h-48 object-cover rounded-md mb-4 border border-violet-400">
+                        <img src="{{ project.images.url }}" alt="{{ project.title }} Thumbnail" class="custom-image">
                     {% else %}
                         <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Project+{{ forloop.counter }}" alt="Placeholder Image for {{ project.title }}" class="w-full h-48 object-cover rounded-md mb-4 border border-violet-400">
                     {% endif %}
                     <h3 class="text-2xl font-semibold mb-2">{{ project.title }}</h3>
-<!--                    <p class="text-gray-300 text-sm mb-4 flex-grow">{{ project.description|truncatechars:150 }}</p>-->
                     {% if project.framework %}
                         <div class="text-sm text-gray-400 mb-4">Framework: <span class="text-primary-color">{{ project.framework }}</span></div>
                     {% endif %}
@@ -70,7 +69,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="flip-card-back bg-gray-800 p-6 rounded-xl flex flex-col justify-center items-center text-center">
+                <div class="flip-card-back bg-dark-800 p-6 rounded-xl flex flex-col justify-center items-center text-center">
                     <h3 class="text-2xl font-semibold mb-3">{{ project.title }}</h3>
                     <p class="text-gray-300 mb-6 flex-grow">{{ project.description }}</p>
                     <div class="flex flex-col space-y-4 w-full">
@@ -104,8 +103,8 @@
                         {% if skill.icon %}
                             <img src="{{ skill.icon.url }}" alt="{{ skill.name }} Icon" class="w-16 h-16 object-contain mb-3">
                         {% else %}
-                             <!-- Fallback placeholder if no icon is provided, using first two letters of skill name -->
-                             <img src="https://placehold.co/80x80/6366f1/ffffff?text={{ skill.name|slice:":2" }}" alt="{{ skill.name }} Icon" class="w-16 h-16 object-contain mb-3">
+
+                             <img src="https://placehold.co/80x80/6366f1/ffffff?text={{ skill.name|slice:':2' }}" alt="{{ skill.name }} Icon" class="w-16 h-16 object-contain mb-3">
                         {% endif %}
                         <h3 class="text-lg font-semibold">{{ skill.name }}</h3>
                     </div>
@@ -157,9 +156,8 @@
         <footer class="text-center py-10 border-t border-gray-700 mt-12 animate-fade-in" data-animation-delay="1000">
             <p class="text-gray-400">&copy; 2025 Your Name. All rights reserved.</p>
             <div class="flex justify-center space-x-4 mt-4">
-                <a href="https://www.linkedin.com/in/nikul6403/" target="_blank" class="text-gray-400 hover:text-primary-color transition-colors duration-200">LinkedIn</a>
-                <a href="https://github.com/Nikul30701" target="_blank" class="text-gray-400 hover:text-primary-color transition-colors duration-200">GitHub</a>
-                <a href="#" target="_blank" class="text-gray-400 hover:text-primary-color transition-colors duration-200">Twitter</a>
+                <a href="https://www.linkedin.com/in/nikul6403/" target="_blank" class="text-gray-400 hover:text-primary-color transition-colors duration-200"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/Nikul30701" target="_blank" class="text-gray-400 hover:text-primary-color transition-colors duration-200"><i class="fab fa-github mr-2"></i></a>
             </div>
         </footer>
 
