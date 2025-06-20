@@ -7,5 +7,6 @@ app_name = 'protfolio_app'
 
 urlpatterns = [
     path("", home, name="home"),
-    path("download-resume/", download_resume, name='download_resume')
+    path("download-resume/", download_resume, name='download_resume'),
+    path("contact/", contact, name='contact')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
