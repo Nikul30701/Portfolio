@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
 from django.conf.global_settings import MEDIA_ROOT, STATICFILES_DIRS, MEDIA_URL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +28,7 @@ SECRET_KEY = 'django-insecure-y4^p$vt(rs%63+&2%od^%_h3vwdt*ehm@1j#(g2f4a^kuehrfe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['Nikul8866.pythonanywhere.com']
+ALLOWED_HOSTS = ['portfolio.onrender.com']
 
 
 # Application definition
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'my_site.urls'
@@ -76,10 +78,7 @@ WSGI_APPLICATION = 'my_site.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default='sqlite:///db.sqlite3', conn_max_age=600)
 }
 
 
@@ -135,3 +134,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'p.nikul6403@gmail.com'
 EMAIL_HOST_PASSWORD = 'oemhezzbngfrvtht'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
