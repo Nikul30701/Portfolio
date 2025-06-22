@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-y4^p$vt(rs%63+&2%od^%_h3vwdt*ehm@1j#(g2f4a^kuehrfe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['nikul07.onrender.com']
+ALLOWED_HOSTS = ['nikul30701.onrender.com']
 
 
 # Application definition
@@ -139,5 +139,3 @@ EMAIL_HOST_USER = 'p.nikul6403@gmail.com'
 EMAIL_HOST_PASSWORD = 'oemhezzbngfrvtht'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'insecure-default')
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
