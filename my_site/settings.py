@@ -139,3 +139,5 @@ EMAIL_HOST_USER = 'p.nikul6403@gmail.com'
 EMAIL_HOST_PASSWORD = 'oemhezzbngfrvtht'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'insecure-default')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
